@@ -1,13 +1,12 @@
 package tests.game;
 
-import me.smudge.client.controllers.Controller;
-import me.smudge.client.game.ChessGame;
-import me.smudge.client.positions.ModularPosition;
+import com.github.smuddgge.results.ResultChecker;
+import com.github.smuddgge.results.ResultInstanceOf;
+import com.github.smuddgge.results.ResultNotNull;
+import com.github.smudgge.controllers.Controller;
+import com.github.smudgge.game.ChessGame;
 import mocks.game.MockChessGame;
 import org.junit.jupiter.api.Test;
-import utilitys.ResultChecker;
-import utilitys.ResultInstanceOf;
-import utilitys.ResultNotNull;
 
 /**
  * Used to test the chess game class

@@ -1,7 +1,7 @@
 package mocks.game;
 
-import me.smudge.client.game.ChessBoard;
-import me.smudge.client.game.layout.BoardLayoutDefault;
+import com.github.smudgge.game.ChessBoard;
+import com.github.smudgge.game.layout.BoardLayoutDefault;
 
 /**
  * Used to get an example chess board

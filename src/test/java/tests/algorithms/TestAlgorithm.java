@@ -1,13 +1,13 @@
 package tests.algorithms;
 
-import me.smudge.client.algorithms.Algorithm;
-import me.smudge.client.game.ChessBoard;
-import me.smudge.client.game.ChessColour;
-import me.smudge.client.game.ChessMove;
+import com.github.smuddgge.results.ResultChecker;
+import com.github.smuddgge.results.ResultNotNull;
+import com.github.smudgge.algorithms.Algorithm;
+import com.github.smudgge.game.ChessBoard;
+import com.github.smudgge.game.ChessColour;
+import com.github.smudgge.game.ChessMove;
 import mocks.game.MockChessBoard;
 import org.junit.jupiter.api.Test;
-import utilitys.ResultChecker;
-import utilitys.ResultNotNull;
 
 /**
  * Used to test the algorithm class

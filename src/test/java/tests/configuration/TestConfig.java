@@ -1,9 +1,9 @@
 package tests.configuration;
 
-import me.smudge.client.configuration.subconfig.Config;
+import com.github.smuddgge.results.ResultChecker;
+import com.github.smuddgge.results.ResultNotNull;
+import com.github.smudgge.configuration.Config;
 import org.junit.jupiter.api.Test;
-import utilitys.ResultChecker;
-import utilitys.ResultNotNull;
 
 /**
  * Used to test the config class

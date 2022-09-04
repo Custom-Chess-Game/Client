@@ -1,13 +1,13 @@
 package tests.game;
 
-import me.smudge.client.game.ChessBoard;
-import me.smudge.client.game.ChessBoardTile;
-import me.smudge.client.game.ChessColour;
-import me.smudge.client.positions.TilePosition;
+import com.github.smuddgge.results.ResultChecker;
+import com.github.smuddgge.results.ResultNotNull;
+import com.github.smudgge.game.ChessBoard;
+import com.github.smudgge.game.ChessBoardTile;
+import com.github.smudgge.game.ChessColour;
+import com.github.smudgge.positions.TilePosition;
 import mocks.game.MockChessBoard;
 import org.junit.jupiter.api.Test;
-import utilitys.ResultChecker;
-import utilitys.ResultNotNull;
 
 /**
  * Used to test the chess board
