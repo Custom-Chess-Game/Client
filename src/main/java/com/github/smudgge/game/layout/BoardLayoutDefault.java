@@ -2,6 +2,8 @@ package com.github.smudgge.game.layout;
 
 import com.github.smudgge.game.ChessBoard;
 import com.github.smudgge.game.ChessColour;
+import com.github.smudgge.game.pieces.custom.Monke;
+import com.github.smudgge.game.pieces.custom.Unicorn;
 import com.github.smudgge.game.pieces.standered.*;
 import com.github.smudgge.positions.TilePosition;
 

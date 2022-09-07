@@ -91,7 +91,7 @@
 
         <!-- Developer API -->
         <dependency>
-            <groupId>com.github.Custom-Chess-Game</groupId>
+            <groupId>com.GitHub.Custom-Chess-Game</groupId>
             <artifactId>DeveloperAPI</artifactId>
             <version>1.0.2</version>
         </dependency>

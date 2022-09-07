@@ -25,8 +25,7 @@ public class Client {
     }
 
     /**
-     * Used to get main {@link Configuration}
-     * @return Config instance
+     * Used to get main {@link Config}
      */
     public static Config getConfig() {
         return Client.config;
