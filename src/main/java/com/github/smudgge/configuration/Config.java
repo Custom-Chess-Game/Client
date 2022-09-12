@@ -28,4 +28,14 @@ public class Config extends YamlConfiguration implements ConfigSelection {
     public ArrayList<Integer> getScreenSize() {
         return new ArrayList<>(this.get().getIntList("ScreenSize"));
     }
+
+    @Override
+    public String getHost() {
+        return this.get().getString("Host");
+    }
+
+    @Override
+    public int getPort() {
+        return this.get().getInt("Port");
+    }
 }

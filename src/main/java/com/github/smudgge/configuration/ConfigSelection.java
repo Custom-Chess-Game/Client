@@ -18,4 +18,16 @@ public interface ConfigSelection {
      * @return Array containing with and height
      */
     ArrayList<Integer> getScreenSize();
+
+    /**
+     * Used to get the host ip
+     * @return String ip
+     */
+    String getHost();
+
+    /**
+     * Used to get the port which the server is running on
+     * @return Integer port
+     */
+    int getPort();
 }

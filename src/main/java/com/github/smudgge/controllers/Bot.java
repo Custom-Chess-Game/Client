@@ -39,6 +39,11 @@ public class Bot extends Controller {
     }
 
     @Override
+    public void onTurnEnd(ChessMove move) {
+
+    }
+
+    @Override
     public ControllerType getType() {
         return ControllerType.BOT;
     }

@@ -167,6 +167,10 @@ public class ChessGame extends ChessBoardItem {
      * Used to switch to the next players turn
      */
     private void switchTurn() {
+        // Get piece moved and fire controller event
+        this.getWhoseTurn().onTurnEnd(this.board.getLog().getLast());
+
+        // Check if the game has ended
         if (this.checkIfGameHasEnded()) {
             Application.setPage(new GameEnd(ChessColour.opposite(this.turn), this.board));
             return;

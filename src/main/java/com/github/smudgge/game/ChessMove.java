@@ -4,6 +4,10 @@ import com.github.smudgge.engine.Console;
 import com.github.smudgge.game.pieces.Piece;
 import com.github.smudgge.positions.TilePosition;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Represents a chess move
  */
@@ -84,5 +88,29 @@ public class ChessMove {
         Console.print("--- Debug ---");
         Console.print("From : " + this.from.getTilePosition().asString());
         Console.print("To : " + this.to.getTilePosition().asString());
+    }
+
+    /**
+     * Used to convert the class into a string
+     */
+    public String convertClassToString() {
+        return this.from.getTilePosition().getX() + ":" + this.from.getTilePosition().getY() + ":" +
+                this.to.getTilePosition().getX() + ":" + this.to.getTilePosition().getY();
+    }
+
+    /**
+     * Used to turn a string into a chess move class
+     * @return Chess move class instance
+     */
+    public static ChessMove convertStringToClass(String data, ChessBoard board) {
+        ArrayList<String> split = new ArrayList<>(Arrays.asList(data.split(":")));
+
+        TilePosition first = new TilePosition(Integer.parseInt(split.get(0)), Integer.parseInt(split.get(1)));
+
+        return new ChessMove(
+                board.getTile(first),
+                board.getTile(new TilePosition(Integer.parseInt(split.get(2)), Integer.parseInt(split.get(3)))),
+                board.getTile(first).getPiece()
+        );
     }
 }

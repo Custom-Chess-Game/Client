@@ -2,6 +2,7 @@ package com.github.smudgge.controllers;
 
 import com.github.smudgge.game.ChessBoard;
 import com.github.smudgge.game.ChessColour;
+import com.github.smudgge.game.ChessMove;
 
 /**
  * Represents a real player
@@ -23,6 +24,11 @@ public class Player extends Controller {
 
     @Override public boolean onMyTurn(ChessBoard board) {
         return false;
+    }
+
+    @Override
+    public void onTurnEnd(ChessMove move) {
+
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.github.smudgge.controllers;
 
 import com.github.smudgge.game.ChessBoard;
 import com.github.smudgge.game.ChessColour;
+import com.github.smudgge.game.ChessMove;
 
 /**
  * Represents one of the players in the game
@@ -32,6 +33,12 @@ public abstract class Controller {
      * @return If the turn has ended
      */
     public abstract boolean onMyTurn(ChessBoard board);
+
+    /**
+     * Called when the controller has made a move
+     * @param move Move that has been made
+     */
+    public abstract void onTurnEnd(ChessMove move);
 
     /**
      * Used to get the controller type

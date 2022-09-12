@@ -84,9 +84,9 @@
 
         <!-- Networking API -->
         <dependency>
-            <groupId>com.GitHub.Custom-Chess-Game</groupId>
+            <groupId>com.github.Custom-Chess-Game</groupId>
             <artifactId>NetworkAPI</artifactId>
-            <version>1.0.2</version>
+            <version>1.1.0</version>
         </dependency>
 
         <!-- Developer API -->

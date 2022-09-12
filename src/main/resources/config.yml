@@ -3,3 +3,7 @@
 MaxFPS: 30
 
 ScreenSize: [1000, 600]
+
+# Networking configuration
+Host: 'localhost'
+Port: 17300

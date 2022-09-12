@@ -52,4 +52,12 @@ public class ChessMoveLog {
 
         return builder.toString();
     }
+
+    /**
+     * Used to get the last log
+     * @return The chess move
+     */
+    public ChessMove getLast() {
+        return this.log.get(this.log.size() - 1);
+    }
 }
