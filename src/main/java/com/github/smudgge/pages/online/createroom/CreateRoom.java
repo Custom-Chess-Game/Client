@@ -1,13 +1,8 @@
 package com.github.smudgge.pages.online.createroom;
 
 import com.github.smuddgge.events.GameRoomCreateEvent;
-import com.github.smudgge.controllers.MultiplayerPlayer;
-import com.github.smudgge.controllers.MultiplayerServer;
 import com.github.smudgge.engine.Application;
 import com.github.smudgge.engine.MultiplayerManager;
-import com.github.smudgge.game.ChessColour;
-import com.github.smudgge.game.ChessGame;
-import com.github.smudgge.game.layout.BoardLayoutDefault;
 import com.github.smudgge.items.ItemCollection;
 import com.github.smudgge.items.button.Button;
 import com.github.smudgge.items.button.ButtonExecute;
@@ -15,9 +10,7 @@ import com.github.smudgge.items.button.ButtonText;
 import com.github.smudgge.items.input.Input;
 import com.github.smudgge.items.text.Text;
 import com.github.smudgge.pages.Page;
-import com.github.smudgge.positions.BoardSize;
 import com.github.smudgge.positions.ModularPosition;
-import com.github.smudgge.positions.Position;
 
 import java.util.UUID;
 

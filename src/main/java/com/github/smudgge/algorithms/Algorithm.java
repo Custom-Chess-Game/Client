@@ -11,32 +11,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents an algorithm
- * A controller can use the algorithm to get the next move
+ * <h2>Represents a chess algorithm</h2>
+ * A controller can use an algorithm to get the next move
  */
 public abstract class Algorithm {
 
     /**
-     * Counts how many instances were crated
+     * Counts how many instances of the chess board were crated
      */
     private int instances = 0;
 
     /**
-     * Used to calculate if the player is winning
+     * Used to calculate the score of the board, in favour of a players colour,
      * by returning a value given the instance of the chess board
-     * @param board Instance of the chess board
+     * @param board Instance of the chess board to calculate
      * @param colour In context of this players colour
      * @return A value determining if they are winning
-     * A positive value means they are winning
-     * A negative value means the other player is winning
+     *         A positive value means they are winning
+     *         A negative value means the other player is winning
      */
     public abstract int score(ChessBoard board, ChessColour colour);
 
     /**
      * Used to get the best move given the instance of the board
-     * @param board Instance of the board
-     * @param scoring The player of which the move should benefit
-     * @return The best move to make on the board
+     * @param board Instance of the chess board
+     * @param scoring The player which the move should benefit
+     * @return The best move, given the algorithm, to make on the board
      */
     public ChessMove getMove(ChessBoard board, ChessColour scoring) {
         HashMap<Integer, ChessMove> moves = new HashMap<>();

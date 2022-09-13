@@ -1,6 +1,5 @@
 package com.github.smudgge.pages.online.joinroom;
 
-import com.github.smuddgge.events.GameRoomCreateEvent;
 import com.github.smuddgge.events.GameRoomJoinEvent;
 import com.github.smuddgge.requests.GameRoomListRequest;
 import com.github.smudgge.controllers.MultiplayerPlayer;
@@ -14,11 +13,9 @@ import com.github.smudgge.items.ItemCollection;
 import com.github.smudgge.items.button.Button;
 import com.github.smudgge.items.button.ButtonExecute;
 import com.github.smudgge.items.button.ButtonText;
-import com.github.smudgge.items.input.Input;
 import com.github.smudgge.items.text.Text;
 import com.github.smudgge.pages.Page;
 import com.github.smudgge.pages.game.Game;
-import com.github.smudgge.pages.online.createroom.Room;
 import com.github.smudgge.positions.BoardSize;
 import com.github.smudgge.positions.ModularPosition;
 import com.github.smudgge.positions.Position;

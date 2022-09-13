@@ -6,7 +6,6 @@ import com.github.smudgge.positions.TilePosition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * Represents a chess move

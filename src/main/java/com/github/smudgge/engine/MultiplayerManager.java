@@ -5,7 +5,6 @@ import com.github.smuddgge.events.GameRoomDeleteEvent;
 import com.github.smuddgge.events.PlayerConnectionEvent;
 import com.github.smuddgge.events.PlayerDisconnectEvent;
 import com.github.smuddgge.managers.ClientNetworkManager;
-import com.github.smuddgge.managers.NetworkManager;
 import com.github.smudgge.Client;
 
 import java.io.IOException;

@@ -8,7 +8,6 @@ import com.github.smudgge.items.button.Button;
 import com.github.smudgge.items.button.ButtonExecute;
 import com.github.smudgge.items.button.ButtonText;
 import com.github.smudgge.pages.Page;
-import com.github.smudgge.pages.offline.Normal;
 import com.github.smudgge.positions.ModularPosition;
 
 public class Offline extends Page {

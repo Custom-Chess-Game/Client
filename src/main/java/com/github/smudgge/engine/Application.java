@@ -1,6 +1,5 @@
 package com.github.smudgge.engine;
 
-import com.github.smuddgge.connections.ClientConnection;
 import com.github.smudgge.Client;
 import com.github.smudgge.items.Item;
 import com.github.smudgge.pages.MainMenu;
@@ -11,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
