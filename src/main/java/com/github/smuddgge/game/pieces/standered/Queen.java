@@ -37,15 +37,9 @@ public class Queen extends Piece {
     @Override
     public ArrayList<ChessBoardTile> getValidPositions(ChessBoard board, ChessBoardTile tile) {
         ArrayList<ChessBoardTile> tiles = new ArrayList<>();
-        TilePosition position = tile.getTilePosition();
 
-        ChessBoardTile bishop = new ChessBoardTile(tile.tileColour, new TilePosition(position.getX(), position.getY()));
-        bishop.setPiece(new Bishop(this.getColour()));
-        tiles.addAll(bishop.getPiece().getValidPositions(board, bishop));
-
-        ChessBoardTile rook = new ChessBoardTile(tile.tileColour, new TilePosition(position.getX(), position.getY()));
-        rook.setPiece(new Rook(this.getColour()));
-        tiles.addAll(rook.getPiece().getValidPositions(board, bishop));
+        tiles.addAll(new Bishop(tile.getPiece().getColour()).getValidPositions(board, tile));
+        tiles.addAll(new Rook(tile.getPiece().getColour()).getValidPositions(board, tile));
 
         return tiles;
     }

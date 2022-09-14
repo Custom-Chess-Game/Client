@@ -42,10 +42,7 @@ public class Pawn extends Piece {
         tiles.add(board.getTile(position.addVector(0, 1, this.getColour())));
 
         // Check if the piece has not moved
-        if (
-           this.getColour() == ChessColour.WHITE && position.getY() == 2 ||
-           this.getColour() == ChessColour.BLACK && position.getY() == 7
-        ) {
+        if (!this.hasMoved()) {
             tiles.add(board.getTile(position.addVector(0, 2, this.getColour())));
         }
 

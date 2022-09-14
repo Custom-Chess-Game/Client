@@ -11,7 +11,10 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        new SimpleClient();
+        // Set up the client
+        SimpleClient client = new SimpleClient();
 
+        // Start the client application
+        client.start();
     }
 }

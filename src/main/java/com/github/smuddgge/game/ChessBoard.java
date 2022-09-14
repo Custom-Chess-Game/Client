@@ -47,7 +47,7 @@ public class ChessBoard {
      * However, the order of the tiles does not matter when rendering
      * as it's based on the tile position.
      */
-    private ArrayList<ChessBoardTile> tiles = new ArrayList<>();
+    private final ArrayList<ChessBoardTile> tiles = new ArrayList<>();
 
     /**
      * Create a new instance of {@link ChessBoard}
@@ -225,6 +225,12 @@ public class ChessBoard {
         return tiles;
     }
 
+    /**
+     * Used to get the possible moves from all the pieces given
+     * the players colour
+     * @param colour The team colour
+     * @return The list of possible moves
+     */
     public ArrayList<ChessMove> getPossibleMoveForColour(ChessColour colour) {
         ArrayList<ChessMove> moves = new ArrayList<>();
 
@@ -291,6 +297,8 @@ public class ChessBoard {
         this.getTile(move.getFrom()).setEmpty();
         this.getTile(move.getTo()).setPiece(move.getPiece());
 
+        move.getPiece().setMoved();
+
         // Add the move to the log
         this.log.add(move);
     }
@@ -302,6 +310,8 @@ public class ChessBoard {
     public void makeSilentMove(ChessMove move) {
         this.getTile(move.getFrom()).setEmpty();
         this.getTile(move.getTo()).setPiece(move.getPiece());
+
+        move.getPiece().setMoved();
     }
 
     /**

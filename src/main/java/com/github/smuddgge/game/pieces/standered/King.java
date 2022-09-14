@@ -47,9 +47,10 @@ public class King extends Piece {
         tiles.add(board.getTile(position.addVector(-1, 0, this.getColour())));
 
         tiles.add(board.getTile(position.addVector(1, 1, this.getColour())));
-        tiles.add(board.getTile(position.addVector(-1, 1, this.getColour())));
         tiles.add(board.getTile(position.addVector(1, -1, this.getColour())));
+        tiles.add(board.getTile(position.addVector(-1, 1, this.getColour())));
         tiles.add(board.getTile(position.addVector(-1, -1, this.getColour())));
+
         return tiles;
     }
 

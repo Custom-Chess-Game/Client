@@ -17,12 +17,17 @@ public abstract class Piece {
     /**
      * The colour of the chess piece
      */
-    private ChessColour colour;
+    private final ChessColour colour;
 
     /**
      * The options tied to the piece
      */
-    private PieceOptions options;
+    private final PieceOptions options;
+
+    /**
+     * Represents if the piece has moved
+     */
+    private boolean hasMoved;
 
     /**
      * Create a new instance of {@link Piece}
@@ -30,6 +35,7 @@ public abstract class Piece {
      */
     public Piece(ChessColour colour) {
         this.colour = colour;
+        this.hasMoved = false;
         this.options = new PieceOptions();
     }
 
@@ -47,6 +53,18 @@ public abstract class Piece {
     public abstract int getValue();
 
     /**
+     * Used to get valid positions on the board
+     * @return Valid tiles
+     */
+    public abstract ArrayList<ChessBoardTile> getValidPositions(ChessBoard board, ChessBoardTile tile);
+
+    /**
+     * Used to get the positions that the piece can take other pieces from
+     * @return Valid tiles
+     */
+    public abstract ArrayList<ChessBoardTile> getTakePositions(ChessBoard board, ChessBoardTile tile);
+
+    /**
      * Used to get the pieces options
      * @return Piece options
      */
@@ -59,6 +77,21 @@ public abstract class Piece {
      */
     public ChessColour getColour() {
         return colour;
+    }
+
+    /**
+     * Used to get if the piece has moved since the start
+     * @return True if the piece has moved
+     */
+    public boolean hasMoved() {
+        return this.hasMoved;
+    }
+
+    /**
+     * Triggered when the piece has moved
+     */
+    public void setMoved() {
+        this.hasMoved = true;
     }
 
     /**
@@ -80,16 +113,4 @@ public abstract class Piece {
         panel.setIcon(scaled);
         panel.setVisible(true);
     }
-
-    /**
-     * Used to get valid positions on the board
-     * @return Valid tiles
-     */
-    public abstract ArrayList<ChessBoardTile> getValidPositions(ChessBoard board, ChessBoardTile tile);
-
-    /**
-     * Used to get the positions that the piece can take other pieces from
-     * @return Valid tiles
-     */
-    public abstract ArrayList<ChessBoardTile> getTakePositions(ChessBoard board, ChessBoardTile tile);
 }

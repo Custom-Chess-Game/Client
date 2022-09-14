@@ -39,11 +39,16 @@ public class Rook extends Piece {
         ArrayList<ChessBoardTile> tiles = new ArrayList<>();
         TilePosition position = tile.getTilePosition();
 
-        for (int index = 1; index < 9; index++) {
-            tiles.add(board.getTile(position.addVector(index, 0, this.getColour())));
-            tiles.add(board.getTile(position.addVector(-index, 0, this.getColour())));
-            tiles.add(board.getTile(position.addVector(0, index, this.getColour())));
-            tiles.add(board.getTile(position.addVector(0, -index, this.getColour())));
+        // Tiles in the X direction
+        for (int xIndex = 1; xIndex < board.getAmountOfTilesX(); xIndex++) {
+            tiles.add(board.getTile(position.addVector(xIndex, 0, this.getColour())));
+            tiles.add(board.getTile(position.addVector(-xIndex, 0, this.getColour())));
+        }
+
+        // Tiles in the Y direction
+        for (int yIndex = 1; yIndex < board.getAmountOfTilesY(); yIndex++) {
+            tiles.add(board.getTile(position.addVector(0, yIndex, this.getColour())));
+            tiles.add(board.getTile(position.addVector(0, -yIndex, this.getColour())));
         }
 
         return tiles;

@@ -39,7 +39,11 @@ public class Bishop extends Piece {
         ArrayList<ChessBoardTile> tiles = new ArrayList<>();
         TilePosition position = tile.getTilePosition();
 
-        for (int index = 1; index < 9; index++) {
+        // The amount of squares the piece can move diagonally
+        int minimum = Math.min(board.getAmountOfTilesX(), board.getAmountOfTilesY());
+
+        // Add all diagonal squares
+        for (int index = 1; index < minimum; index++) {
             tiles.add(board.getTile(position.addVector(index, index, this.getColour())));
             tiles.add(board.getTile(position.addVector(index, -index, this.getColour())));
             tiles.add(board.getTile(position.addVector(-index, index, this.getColour())));
