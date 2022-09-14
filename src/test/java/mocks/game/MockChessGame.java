@@ -1,13 +1,13 @@
 package mocks.game;
 
-import com.github.smudgge.algorithms.AlgorithmBasic;
-import com.github.smudgge.controllers.Bot;
-import com.github.smudgge.controllers.Player;
-import com.github.smudgge.game.ChessColour;
-import com.github.smudgge.game.ChessGame;
-import com.github.smudgge.game.layout.BoardLayoutDefault;
-import com.github.smudgge.positions.BoardSize;
-import com.github.smudgge.positions.ModularPosition;
+import com.github.smuddgge.algorithms.AlgorithmBasic;
+import com.github.smuddgge.controllers.Bot;
+import com.github.smuddgge.controllers.Player;
+import com.github.smuddgge.game.ChessColour;
+import com.github.smuddgge.game.ChessGame;
+import com.github.smuddgge.game.layout.BoardLayoutDefault;
+import com.github.smuddgge.positions.BoardSize;
+import com.github.smuddgge.positions.ModularPosition;
 
 /**
  * Used to get an example game board

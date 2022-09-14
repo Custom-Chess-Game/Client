@@ -3,8 +3,8 @@ package tests.game;
 import com.github.smuddgge.results.ResultChecker;
 import com.github.smuddgge.results.ResultInstanceOf;
 import com.github.smuddgge.results.ResultNotNull;
-import com.github.smudgge.controllers.Controller;
-import com.github.smudgge.game.ChessGame;
+import com.github.smuddgge.controllers.Controller;
+import com.github.smuddgge.game.ChessGame;
 import mocks.game.MockChessGame;
 import org.junit.jupiter.api.Test;
 

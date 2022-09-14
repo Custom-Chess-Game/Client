@@ -2,7 +2,7 @@ package tests.configuration;
 
 import com.github.smuddgge.results.ResultChecker;
 import com.github.smuddgge.results.ResultNotNull;
-import com.github.smudgge.configuration.Config;
+import com.github.smuddgge.configuration.Config;
 import org.junit.jupiter.api.Test;
 
 /**

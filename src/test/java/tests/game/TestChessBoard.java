@@ -2,10 +2,10 @@ package tests.game;
 
 import com.github.smuddgge.results.ResultChecker;
 import com.github.smuddgge.results.ResultNotNull;
-import com.github.smudgge.game.ChessBoard;
-import com.github.smudgge.game.ChessBoardTile;
-import com.github.smudgge.game.ChessColour;
-import com.github.smudgge.positions.TilePosition;
+import com.github.smuddgge.game.ChessBoard;
+import com.github.smuddgge.game.ChessBoardTile;
+import com.github.smuddgge.game.ChessColour;
+import com.github.smuddgge.positions.TilePosition;
 import mocks.game.MockChessBoard;
 import org.junit.jupiter.api.Test;
 
