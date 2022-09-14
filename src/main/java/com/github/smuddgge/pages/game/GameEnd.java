@@ -9,7 +9,6 @@ import com.github.smuddgge.items.button.Button;
 import com.github.smuddgge.items.button.ButtonExecute;
 import com.github.smuddgge.items.button.ButtonText;
 import com.github.smuddgge.items.text.Text;
-import com.github.smuddgge.pages.simple.MainMenu;
 import com.github.smuddgge.pages.Page;
 import com.github.smuddgge.positions.ModularPosition;
 

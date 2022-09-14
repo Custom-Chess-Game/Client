@@ -1,8 +1,8 @@
 package com.github.smuddgge;
 
 import com.github.smuddgge.game.CustomChessGame;
-import com.github.smuddgge.pages.custom.CustomMainMenu;
 import com.github.smuddgge.pages.Page;
+import com.github.smuddgge.pages.custom.CustomMainMenu;
 
 import java.util.ArrayList;
 

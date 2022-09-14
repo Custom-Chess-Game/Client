@@ -1,7 +1,7 @@
 package com.github.smuddgge.controllers;
 
-import com.github.smuddgge.events.PlayerMoveEvent;
 import com.github.smuddgge.engine.MultiplayerManager;
+import com.github.smuddgge.events.PlayerMoveEvent;
 import com.github.smuddgge.game.ChessBoard;
 import com.github.smuddgge.game.ChessColour;
 import com.github.smuddgge.game.ChessMove;

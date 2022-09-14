@@ -2,7 +2,6 @@ package com.github.smuddgge.engine;
 
 import com.github.smuddgge.Client;
 import com.github.smuddgge.items.Item;
-import com.github.smuddgge.pages.simple.MainMenu;
 import com.github.smuddgge.pages.Page;
 import com.github.smuddgge.positions.Position;
 

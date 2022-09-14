@@ -1,8 +1,8 @@
 package com.github.smuddgge.pages.simple.online.createroom;
 
-import com.github.smuddgge.events.GameRoomCreateEvent;
 import com.github.smuddgge.engine.Application;
 import com.github.smuddgge.engine.MultiplayerManager;
+import com.github.smuddgge.events.GameRoomCreateEvent;
 import com.github.smuddgge.items.ItemCollection;
 import com.github.smuddgge.items.button.Button;
 import com.github.smuddgge.items.button.ButtonExecute;

@@ -1,11 +1,10 @@
 package com.github.smuddgge.pages.simple.online.joinroom;
 
-import com.github.smuddgge.events.GameRoomJoinEvent;
-import com.github.smuddgge.requests.GameRoomListRequest;
 import com.github.smuddgge.controllers.MultiplayerPlayer;
 import com.github.smuddgge.controllers.MultiplayerServer;
 import com.github.smuddgge.engine.Application;
 import com.github.smuddgge.engine.MultiplayerManager;
+import com.github.smuddgge.events.GameRoomJoinEvent;
 import com.github.smuddgge.game.ChessColour;
 import com.github.smuddgge.game.ChessGame;
 import com.github.smuddgge.game.layout.BoardLayoutDefault;
@@ -19,6 +18,7 @@ import com.github.smuddgge.pages.game.Game;
 import com.github.smuddgge.positions.BoardSize;
 import com.github.smuddgge.positions.ModularPosition;
 import com.github.smuddgge.positions.Position;
+import com.github.smuddgge.requests.GameRoomListRequest;
 
 import java.util.Map;
 import java.util.UUID;

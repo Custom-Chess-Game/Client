@@ -1,12 +1,12 @@
 package com.github.smuddgge.controllers;
 
-import com.github.smuddgge.requests.PlayerMoveRequest;
 import com.github.smuddgge.engine.Application;
 import com.github.smuddgge.engine.ApplicationState;
 import com.github.smuddgge.engine.MultiplayerManager;
 import com.github.smuddgge.game.ChessBoard;
 import com.github.smuddgge.game.ChessColour;
 import com.github.smuddgge.game.ChessMove;
+import com.github.smuddgge.requests.PlayerMoveRequest;
 
 public class MultiplayerServer extends Controller {
 

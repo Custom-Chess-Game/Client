@@ -1,11 +1,11 @@
 package com.github.smuddgge.engine;
 
+import com.github.smuddgge.Client;
 import com.github.smuddgge.connections.ClientConnection;
 import com.github.smuddgge.events.GameRoomDeleteEvent;
 import com.github.smuddgge.events.PlayerConnectionEvent;
 import com.github.smuddgge.events.PlayerDisconnectEvent;
 import com.github.smuddgge.managers.ClientNetworkManager;
-import com.github.smuddgge.Client;
 
 import java.io.IOException;
 import java.util.UUID;

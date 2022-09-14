@@ -1,6 +1,5 @@
 package com.github.smuddgge.pages.simple.online.createroom;
 
-import com.github.smuddgge.requests.GameRoomRequest;
 import com.github.smuddgge.controllers.MultiplayerPlayer;
 import com.github.smuddgge.controllers.MultiplayerServer;
 import com.github.smuddgge.engine.Application;
@@ -15,6 +14,7 @@ import com.github.smuddgge.pages.game.Game;
 import com.github.smuddgge.positions.BoardSize;
 import com.github.smuddgge.positions.ModularPosition;
 import com.github.smuddgge.positions.Position;
+import com.github.smuddgge.requests.GameRoomRequest;
 
 import java.util.Map;
 
