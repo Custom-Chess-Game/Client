@@ -1,6 +1,6 @@
 package com.github.smuddgge;
 
-import com.github.smuddgge.pages.MainMenu;
+import com.github.smuddgge.pages.simple.MainMenu;
 import com.github.smuddgge.pages.Page;
 
 /**

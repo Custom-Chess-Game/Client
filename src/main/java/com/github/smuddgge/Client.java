@@ -15,16 +15,29 @@ public abstract class Client {
     private static Config config;
 
     /**
-     * Used to create a new instance of the chess application
+     * The instance of the main menu
      */
-    public Client() {
+    private static Page mainMenu;
 
+    /**
+     * Used to start the client
+     */
+    public void start() {
         // Set up the config
         Client.config = new Config();
 
-        new Application("Chess");
+        // Setup main menu
+        Client.mainMenu = this.getStartingPage();
 
-        Application.setPage(this.getStartingPage());
+        new Application("Chess");
+    }
+
+    /**
+     * Used to get the default main menu
+     * @return Returns the instance of the manu menu pageg
+     */
+    public static Page getMainMenu() {
+        return Client.mainMenu;
     }
 
     /**

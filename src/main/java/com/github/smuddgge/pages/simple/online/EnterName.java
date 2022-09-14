@@ -1,4 +1,4 @@
-package com.github.smuddgge.pages.online;
+package com.github.smuddgge.pages.simple.online;
 
 import com.github.smuddgge.engine.Application;
 import com.github.smuddgge.engine.MultiplayerManager;
@@ -19,9 +19,6 @@ public class EnterName extends Page {
      */
     private final ItemCollection itemCollection;
 
-    /**
-     * New instance of the offline menu
-     */
     public EnterName() {
         this.itemCollection = new ItemCollection().setColumns(1);
 

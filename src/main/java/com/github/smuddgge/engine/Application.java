@@ -2,7 +2,7 @@ package com.github.smuddgge.engine;
 
 import com.github.smuddgge.Client;
 import com.github.smuddgge.items.Item;
-import com.github.smuddgge.pages.MainMenu;
+import com.github.smuddgge.pages.simple.MainMenu;
 import com.github.smuddgge.pages.Page;
 import com.github.smuddgge.positions.Position;
 
@@ -57,7 +57,7 @@ public class Application {
 
         // Set the application defaults
         Application.state = ApplicationState.Running;
-        Application.setPage(new MainMenu());
+        Application.setPage(Client.getMainMenu());
 
         // Start the application
         this.start();

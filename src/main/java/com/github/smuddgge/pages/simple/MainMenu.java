@@ -1,4 +1,4 @@
-package com.github.smuddgge.pages;
+package com.github.smuddgge.pages.simple;
 
 import com.github.smuddgge.engine.Application;
 import com.github.smuddgge.engine.MultiplayerManager;
@@ -6,8 +6,9 @@ import com.github.smuddgge.items.ItemCollection;
 import com.github.smuddgge.items.button.Button;
 import com.github.smuddgge.items.button.ButtonExecute;
 import com.github.smuddgge.items.button.ButtonText;
-import com.github.smuddgge.pages.offline.Offline;
-import com.github.smuddgge.pages.online.EnterName;
+import com.github.smuddgge.pages.Page;
+import com.github.smuddgge.pages.simple.offline.Offline;
+import com.github.smuddgge.pages.simple.online.EnterName;
 import com.github.smuddgge.positions.ModularPosition;
 
 /**

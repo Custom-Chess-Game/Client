@@ -44,10 +44,11 @@ public class ChessGame extends ChessBoardItem {
 
     /**
      * Used to create a new instance of the chessboard
-     * @param modularPosition The position of the board on the screen
-     * @param player1 The first player to play white
-     * @param player2 The second player to play black
+     * @param modularPosition The position of the board
+     * @param player1 The first player
+     * @param player2 The second player
      * @param size The size of the board
+     * @param layout The layout of the board
      */
     public ChessGame(ModularPosition modularPosition, Controller player1, Controller player2, BoardSize size, BoardLayout layout) {
         super(modularPosition);

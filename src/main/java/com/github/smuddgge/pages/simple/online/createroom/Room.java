@@ -1,4 +1,4 @@
-package com.github.smuddgge.pages.online.createroom;
+package com.github.smuddgge.pages.simple.online.createroom;
 
 import com.github.smuddgge.requests.GameRoomRequest;
 import com.github.smuddgge.controllers.MultiplayerPlayer;
@@ -28,9 +28,6 @@ public class Room extends Page {
      */
     private final ItemCollection itemCollection;
 
-    /**
-     * New instance of the offline menu
-     */
     public Room() {
         this.itemCollection = new ItemCollection().setColumns(1);
 

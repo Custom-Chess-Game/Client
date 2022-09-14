@@ -1,4 +1,4 @@
-package com.github.smuddgge.pages.online.joinroom;
+package com.github.smuddgge.pages.simple.online.joinroom;
 
 import com.github.smuddgge.events.GameRoomJoinEvent;
 import com.github.smuddgge.requests.GameRoomListRequest;
@@ -31,9 +31,6 @@ public class JoinRoom extends Page {
      */
     private final ItemCollection itemCollection;
 
-    /**
-     * New instance of the offline menu
-     */
     public JoinRoom() {
         this.itemCollection = new ItemCollection().setColumns(1);
 
@@ -53,7 +50,6 @@ public class JoinRoom extends Page {
         ));
 
         Map<String, Object> rooms = (Map<String, Object>) MultiplayerManager.get().request(new GameRoomListRequest());
-        System.out.println(rooms);
 
         for (Map.Entry<String, Object> entry : rooms.entrySet()) {
             Map<String, Object> room = (Map<String, Object>) entry.getValue();

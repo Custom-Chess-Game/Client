@@ -16,7 +16,7 @@ public class Game extends Page {
     private final ItemCollection itemCollection;
 
     /**
-     * New instance of the offline menu
+     * New instance of the game menu
      * @param chessGame Instance of the game
      */
     public Game(ChessGame chessGame) {

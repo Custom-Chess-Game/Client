@@ -383,7 +383,7 @@ public class ChessBoard {
                 y = (this.amountOfTilesY - tile.getTilePosition().getY()) + 1;
             }
 
-            int index = ((this.amountOfTilesY * y) + x) - 9;
+            int index = ((this.amountOfTilesY * y) + x) - (this.amountOfTilesX + 1);
 
             listOfTiles.put(index, tilePanel);
 

@@ -1,4 +1,4 @@
-package com.github.smuddgge.pages.offline;
+package com.github.smuddgge.pages.simple.offline;
 
 import com.github.smuddgge.algorithms.AlgorithmBasic;
 import com.github.smuddgge.controllers.Bot;

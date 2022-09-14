@@ -1,4 +1,4 @@
-package com.github.smuddgge.pages.online.createroom;
+package com.github.smuddgge.pages.simple.online.createroom;
 
 import com.github.smuddgge.events.GameRoomCreateEvent;
 import com.github.smuddgge.engine.Application;
@@ -22,9 +22,6 @@ public class CreateRoom extends Page {
      */
     private final ItemCollection itemCollection;
 
-    /**
-     * New instance of the offline menu
-     */
     public CreateRoom() {
         this.itemCollection = new ItemCollection().setColumns(1);
 
