@@ -2,11 +2,12 @@ package com.github.smudgge;
 
 import com.github.smudgge.configuration.Config;
 import com.github.smudgge.engine.Application;
+import com.github.smudgge.pages.Page;
 
 /**
  * Represents the client
  */
-public class Client {
+public abstract class Client {
 
     /**
      * Instance of the configuration file
@@ -22,7 +23,15 @@ public class Client {
         Client.config = new Config();
 
         new Application("Chess");
+
+        Application.setPage(this.getStartingPage());
     }
+
+    /**
+     * Used to get the page where the application will begin
+     * @return Instance of a {@link Page}
+     */
+    public abstract Page getStartingPage();
 
     /**
      * Used to get main {@link Config}
