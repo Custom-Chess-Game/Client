@@ -9,6 +9,7 @@ import com.github.smuddgge.game.ChessMove;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * <h2>Represents a chess algorithm</h2>
@@ -40,29 +41,57 @@ public abstract class Algorithm {
      */
     public ChessMove getMove(ChessBoard board, ChessColour scoring) {
         HashMap<Integer, ChessMove> moves = new HashMap<>();
+        AtomicInteger movesToWaitFor = new AtomicInteger();
+        int depth = 4;
+
+        long startTime = System.currentTimeMillis();
+        AtomicInteger threadsCreated = new AtomicInteger();
 
         // Loop though the possible moves
         for (ChessMove move : board.getPossibleMoveForColour(scoring)) {
+            movesToWaitFor.getAndIncrement();
 
-            // Make the move
-            ChessBoard temp = new ChessBoard(board);
-            temp.makeSilentMove(move);
+            new Thread(() -> {
+                threadsCreated.getAndIncrement();
 
-            // Score the move
-            int score = this.calculate(3, temp, scoring, scoring, -1000, 1000);
+                // Make the move
+                ChessBoard temp = new ChessBoard(board);
+                temp.makeSilentMove(move);
 
-            // Add the move to a map
-            moves.put(score, move);
+                // Score the move
+                int score = this.calculate(depth, temp, scoring, scoring, -1000, 1000);
 
-            // Return if the score is already maxed
-            if (score == 1000) break;
+                // Add the move to a map
+                moves.put(score, move);
+
+                // Remove from counter
+                movesToWaitFor.getAndDecrement();
+
+            }).start();
+        }
+
+        // Wait for all the threads to complete
+        while (movesToWaitFor.get() != 0) {
+            try {
+                Thread.sleep(500);
+            }
+            catch (InterruptedException exception) {
+                exception.printStackTrace();
+            }
         }
 
         Map.Entry<Integer, ChessMove> entry = Collections.max(moves.entrySet(), Map.Entry.comparingByKey());
 
-        Console.print(ConsoleColour.PINK + "--- Algorithm ---");
-        Console.print("Scored Move : " + ConsoleColour.YELLOW + entry.getKey());
-        Console.print("Instances Created : " + ConsoleColour.YELLOW + instances);
+        long timeTaken = (System.currentTimeMillis() - startTime) / 1000;
+
+        String summary = ConsoleColour.PINK + "Algorithm \n" + ConsoleColour.WHITE +
+                "Tree Depth : " + ConsoleColour.YELLOW + depth + "\n" + ConsoleColour.WHITE +
+                "Scored Move (Value) : " + ConsoleColour.YELLOW + entry.getKey() + "\n" + ConsoleColour.WHITE +
+                "Chess Board Instances Created : " + ConsoleColour.YELLOW + this.instances + "\n"  + ConsoleColour.WHITE +
+                "Threads Created : " + ConsoleColour.YELLOW + threadsCreated + "\n"  + ConsoleColour.WHITE +
+                "Time Taken : " + ConsoleColour.YELLOW + timeTaken + "s";
+
+        Console.print(summary);
 
         // Return the move that scores the highest
         return entry.getValue();

@@ -41,8 +41,8 @@ public class MultiplayerManager {
             if (name != null) MultiplayerManager.setClientName(MultiplayerManager.name);
         }
         catch (IOException exception) {
-            Console.print(ConsoleColour.WHITE + "[Socket] Unable to connect to the server. This may be because the server is offline or the config contains" +
-                    "the wrong host address.");
+            Console.print(ConsoleColour.WHITE + "[Socket] Unable to connect to the server. This may be " +
+                    "because the server is offline or the config contains the wrong host address.");
         }
     }
 

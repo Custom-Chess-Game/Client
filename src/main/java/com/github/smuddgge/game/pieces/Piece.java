@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Represents a chess board piece
  */
-public abstract class Piece {
+public abstract class Piece implements Cloneable {
 
     /**
      * The colour of the chess piece
@@ -112,5 +112,15 @@ public abstract class Piece {
 
         panel.setIcon(scaled);
         panel.setVisible(true);
+    }
+
+    @Override
+    public Piece clone() {
+        try {
+            return (Piece) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

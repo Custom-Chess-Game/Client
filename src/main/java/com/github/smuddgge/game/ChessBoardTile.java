@@ -55,7 +55,7 @@ public class ChessBoardTile {
     public ChessBoardTile(ChessBoardTile tile) {
         this.tileColour = tile.tileColour;
         this.tilePosition = tile.tilePosition;
-        this.piece = tile.piece;
+        if (tile.piece != null) this.piece = tile.piece.clone();
     }
 
     /**
