@@ -1,5 +1,8 @@
 package com.github.smuddgge;
 
+import com.github.smuddgge.pages.Page;
+import com.github.smuddgge.pages.simple.MainMenu;
+
 /**
  * Application pointer
  */
@@ -12,7 +15,12 @@ public class Main {
     public static void main(String[] args) {
 
         // Set up the client
-        SimpleClient client = new SimpleClient();
+        Client client = new Client() {
+            @Override
+            public Page getStartingPage() {
+                return new MainMenu();
+            }
+        };
 
         // Start the client application
         client.start();
