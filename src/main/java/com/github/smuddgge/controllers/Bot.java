@@ -13,7 +13,7 @@ public class Bot extends Controller {
     /**
      * The algorithm instance used by the bot
      */
-    private Algorithm algorithm;
+    private final Algorithm algorithm;
 
     /**
      * Create a new instance of a {@link Controller}

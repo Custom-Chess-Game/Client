@@ -4,7 +4,6 @@ import com.github.smuddgge.game.ChessBoard;
 import com.github.smuddgge.game.ChessBoardTile;
 import com.github.smuddgge.game.ChessColour;
 import com.github.smuddgge.game.pieces.Piece;
-import com.github.smuddgge.positions.TilePosition;
 
 import java.util.ArrayList;
 
