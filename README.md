@@ -8,6 +8,8 @@ This can also be used as a API to create a modded client
 
 # Dependency
 
+Replace `Tag` with this number
+Example: `1.0.0`
 > [![](https://jitpack.io/v/Custom-Chess-Game/Client.svg)](https://jitpack.io/#Custom-Chess-Game/Client)
 
 ## Maven dependency
@@ -38,7 +40,7 @@ allprojects {
 ```
 ```gradle
 dependencies {
-    implementation 'com.github.Custom-Chess-Game:Client:1.1.1'
+    implementation 'com.github.Custom-Chess-Game:Client:Tag'
 }
 ```
 
