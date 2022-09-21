@@ -1,6 +1,8 @@
 # Client
 The game client that users run to play the game
 
+To run the game you must load it with maven as an application with main class `com.github.smuddgge.Main`
+
 # Client API
 This can also be used as a API to create a modded client
 
