@@ -11,6 +11,8 @@ import com.github.smuddgge.items.text.Text;
 import com.github.smuddgge.pages.Page;
 import com.github.smuddgge.positions.ModularPosition;
 
+import java.util.Objects;
+
 public class EnterName extends Page {
 
     /**
@@ -19,12 +21,12 @@ public class EnterName extends Page {
      */
     private final ItemCollection itemCollection;
 
-    public EnterName() {
+    public EnterName(String title) {
         this.itemCollection = new ItemCollection().setColumns(1);
 
         this.itemCollection.addItem(new Text(
                 new ModularPosition(500, 50),
-                "Enter Name"
+                title
         ));
 
         Input input = new Input(
@@ -37,6 +39,10 @@ public class EnterName extends Page {
                 new ModularPosition(500, 50),
                 new ButtonText("Confirm"),
                 new ButtonExecute(() -> {
+                    if (Objects.equals(input.getInput(), "")) {
+                        Application.setPage(new EnterName("Name cannot be null"));
+                        return;
+                    }
                     MultiplayerManager.setClientName(input.getInput());
                     Application.setPage(new Offline());
                 })

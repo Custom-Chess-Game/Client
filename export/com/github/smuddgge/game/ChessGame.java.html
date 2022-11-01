@@ -1,0 +1,233 @@
+<html>
+<head>
+<title>ChessGame.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #629755; font-weight: bold; font-style: italic;}
+.s4 { color: #808080;}
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ChessGame.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.github.smuddgge.game</span><span class="s0">;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.controllers.Controller</span><span class="s0">;</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.controllers.MultiplayerPlayer</span><span class="s0">;</span>
+<a name="l5"><span class="ln">5    </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.controllers.MultiplayerServer</span><span class="s0">;</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.engine.Application</span><span class="s0">;</span>
+<a name="l7"><span class="ln">7    </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.engine.MultiplayerManager</span><span class="s0">;</span>
+<a name="l8"><span class="ln">8    </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.events.GameRoomDeleteEvent</span><span class="s0">;</span>
+<a name="l9"><span class="ln">9    </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.game.layout.BoardLayout</span><span class="s0">;</span>
+<a name="l10"><span class="ln">10   </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.items.chessboard.ChessBoardItem</span><span class="s0">;</span>
+<a name="l11"><span class="ln">11   </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.pages.game.GameEnd</span><span class="s0">;</span>
+<a name="l12"><span class="ln">12   </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.positions.BoardSize</span><span class="s0">;</span>
+<a name="l13"><span class="ln">13   </span></a><span class="s0">import </span><span class="s1">com.github.smuddgge.positions.ModularPosition</span><span class="s0">;</span>
+<a name="l14"><span class="ln">14   </span></a>
+<a name="l15"><span class="ln">15   </span></a><span class="s0">import </span><span class="s1">java.awt.*</span><span class="s0">;</span>
+<a name="l16"><span class="ln">16   </span></a><span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span>
+<a name="l17"><span class="ln">17   </span></a>
+<a name="l18"><span class="ln">18   </span></a><span class="s2">/**</span>
+<a name="l19"><span class="ln">19   </span></a> <span class="s2">* Represents the game instance</span>
+<a name="l20"><span class="ln">20   </span></a> <span class="s2">*/</span>
+<a name="l21"><span class="ln">21   </span></a><span class="s0">public class </span><span class="s1">ChessGame </span><span class="s0">extends </span><span class="s1">ChessBoardItem {</span>
+<a name="l22"><span class="ln">22   </span></a>
+<a name="l23"><span class="ln">23   </span></a>    <span class="s2">/**</span>
+<a name="l24"><span class="ln">24   </span></a>     <span class="s2">* The board instance</span>
+<a name="l25"><span class="ln">25   </span></a>     <span class="s2">*/</span>
+<a name="l26"><span class="ln">26   </span></a>    <span class="s0">private final </span><span class="s1">ChessBoard board</span><span class="s0">;</span>
+<a name="l27"><span class="ln">27   </span></a>
+<a name="l28"><span class="ln">28   </span></a>    <span class="s2">/**</span>
+<a name="l29"><span class="ln">29   </span></a>     <span class="s2">* The players</span>
+<a name="l30"><span class="ln">30   </span></a>     <span class="s2">*/</span>
+<a name="l31"><span class="ln">31   </span></a>    <span class="s0">private final </span><span class="s1">Controller player1</span><span class="s0">;</span>
+<a name="l32"><span class="ln">32   </span></a>    <span class="s0">private final </span><span class="s1">Controller player2</span><span class="s0">;</span>
+<a name="l33"><span class="ln">33   </span></a>
+<a name="l34"><span class="ln">34   </span></a>    <span class="s2">/**</span>
+<a name="l35"><span class="ln">35   </span></a>     <span class="s2">* Who's turn it is</span>
+<a name="l36"><span class="ln">36   </span></a>     <span class="s2">*/</span>
+<a name="l37"><span class="ln">37   </span></a>    <span class="s0">private </span><span class="s1">ChessColour turn</span><span class="s0">;</span>
+<a name="l38"><span class="ln">38   </span></a>
+<a name="l39"><span class="ln">39   </span></a>    <span class="s2">/**</span>
+<a name="l40"><span class="ln">40   </span></a>     <span class="s2">* Stores for the previous tile</span>
+<a name="l41"><span class="ln">41   </span></a>     <span class="s2">* Used to disable and reset tiles that are no longer hovered or clicked</span>
+<a name="l42"><span class="ln">42   </span></a>     <span class="s2">*/</span>
+<a name="l43"><span class="ln">43   </span></a>    <span class="s0">private </span><span class="s1">ChessBoardTile clickStore</span><span class="s0">;</span>
+<a name="l44"><span class="ln">44   </span></a>    <span class="s0">private </span><span class="s1">ChessBoardTile hoverStore</span><span class="s0">;</span>
+<a name="l45"><span class="ln">45   </span></a>    <span class="s0">private </span><span class="s1">ChessBoardTile clickHoverStore</span><span class="s0">;</span>
+<a name="l46"><span class="ln">46   </span></a>
+<a name="l47"><span class="ln">47   </span></a>    <span class="s0">private boolean </span><span class="s1">newTurn = </span><span class="s0">true;</span>
+<a name="l48"><span class="ln">48   </span></a>
+<a name="l49"><span class="ln">49   </span></a>    <span class="s2">/**</span>
+<a name="l50"><span class="ln">50   </span></a>     <span class="s2">* Used to create a new instance of the chessboard</span>
+<a name="l51"><span class="ln">51   </span></a>     <span class="s2">* </span><span class="s3">@param </span><span class="s2">modularPosition The position of the board</span>
+<a name="l52"><span class="ln">52   </span></a>     <span class="s2">* </span><span class="s3">@param </span><span class="s2">player1 The first player</span>
+<a name="l53"><span class="ln">53   </span></a>     <span class="s2">* </span><span class="s3">@param </span><span class="s2">player2 The second player</span>
+<a name="l54"><span class="ln">54   </span></a>     <span class="s2">* </span><span class="s3">@param </span><span class="s2">size The size of the board</span>
+<a name="l55"><span class="ln">55   </span></a>     <span class="s2">* </span><span class="s3">@param </span><span class="s2">layout The layout of the board</span>
+<a name="l56"><span class="ln">56   </span></a>     <span class="s2">*/</span>
+<a name="l57"><span class="ln">57   </span></a>    <span class="s0">public </span><span class="s1">ChessGame(ModularPosition modularPosition</span><span class="s0">, </span><span class="s1">Controller player1</span><span class="s0">, </span><span class="s1">Controller player2</span><span class="s0">, </span><span class="s1">BoardSize size</span><span class="s0">, </span><span class="s1">BoardLayout layout) {</span>
+<a name="l58"><span class="ln">58   </span></a>        <span class="s0">super</span><span class="s1">(modularPosition)</span><span class="s0">;</span>
+<a name="l59"><span class="ln">59   </span></a>
+<a name="l60"><span class="ln">60   </span></a>        <span class="s0">this</span><span class="s1">.player1 = player1</span><span class="s0">;</span>
+<a name="l61"><span class="ln">61   </span></a>        <span class="s0">this</span><span class="s1">.player2 = player2</span><span class="s0">;</span>
+<a name="l62"><span class="ln">62   </span></a>        <span class="s0">this</span><span class="s1">.turn = ChessColour.WHITE</span><span class="s0">;</span>
+<a name="l63"><span class="ln">63   </span></a>
+<a name="l64"><span class="ln">64   </span></a>        <span class="s0">this</span><span class="s1">.board = </span><span class="s0">new </span><span class="s1">ChessBoard(size.getX()</span><span class="s0">, </span><span class="s1">size.getY())</span><span class="s0">;</span>
+<a name="l65"><span class="ln">65   </span></a>        <span class="s0">this</span><span class="s1">.board.setup()</span><span class="s0">;</span>
+<a name="l66"><span class="ln">66   </span></a>        <span class="s0">this</span><span class="s1">.board.setLayout(layout)</span><span class="s0">;</span>
+<a name="l67"><span class="ln">67   </span></a>    <span class="s1">}</span>
+<a name="l68"><span class="ln">68   </span></a>
+<a name="l69"><span class="ln">69   </span></a>    <span class="s1">@Override</span>
+<a name="l70"><span class="ln">70   </span></a>    <span class="s0">public void </span><span class="s1">tick() {</span>
+<a name="l71"><span class="ln">71   </span></a>        <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.newTurn) {</span>
+<a name="l72"><span class="ln">72   </span></a>            <span class="s0">this</span><span class="s1">.newTurn = </span><span class="s0">false;</span>
+<a name="l73"><span class="ln">73   </span></a>            <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.getWhoseTurn().onMyTurn(</span><span class="s0">this</span><span class="s1">.board)) switchTurn()</span><span class="s0">;</span>
+<a name="l74"><span class="ln">74   </span></a>        <span class="s1">}</span>
+<a name="l75"><span class="ln">75   </span></a>    <span class="s1">}</span>
+<a name="l76"><span class="ln">76   </span></a>
+<a name="l77"><span class="ln">77   </span></a>    <span class="s1">@Override</span>
+<a name="l78"><span class="ln">78   </span></a>    <span class="s0">public </span><span class="s1">ChessBoard getBoard() {</span>
+<a name="l79"><span class="ln">79   </span></a>        <span class="s0">return this</span><span class="s1">.board</span><span class="s0">;</span>
+<a name="l80"><span class="ln">80   </span></a>    <span class="s1">}</span>
+<a name="l81"><span class="ln">81   </span></a>
+<a name="l82"><span class="ln">82   </span></a>    <span class="s1">@Override</span>
+<a name="l83"><span class="ln">83   </span></a>    <span class="s0">public void </span><span class="s1">onTileHover(ChessBoardTile tile) {</span>
+<a name="l84"><span class="ln">84   </span></a>
+<a name="l85"><span class="ln">85   </span></a>        <span class="s4">// If a piece is selected</span>
+<a name="l86"><span class="ln">86   </span></a>        <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.clickStore != </span><span class="s0">null </span><span class="s1">&amp;&amp; </span><span class="s0">this</span><span class="s1">.clickStore.getPiece() != </span><span class="s0">null</span><span class="s1">) {</span>
+<a name="l87"><span class="ln">87   </span></a>
+<a name="l88"><span class="ln">88   </span></a>            <span class="s4">// If it's a new piece remove old color</span>
+<a name="l89"><span class="ln">89   </span></a>            <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.clickStore != </span><span class="s0">this</span><span class="s1">.clickHoverStore) {</span>
+<a name="l90"><span class="ln">90   </span></a>                <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.clickHoverStore != </span><span class="s0">null</span><span class="s1">) </span><span class="s0">this</span><span class="s1">.resetTiles(</span><span class="s0">this</span><span class="s1">.hoverStore)</span><span class="s0">;</span>
+<a name="l91"><span class="ln">91   </span></a>                <span class="s0">this</span><span class="s1">.clickHoverStore = </span><span class="s0">this</span><span class="s1">.clickStore</span><span class="s0">;</span>
+<a name="l92"><span class="ln">92   </span></a>            <span class="s1">}</span>
+<a name="l93"><span class="ln">93   </span></a>
+<a name="l94"><span class="ln">94   </span></a>            <span class="s4">// color new pieces tiles</span>
+<a name="l95"><span class="ln">95   </span></a>            <span class="s0">this</span><span class="s1">.colourTiles(</span><span class="s0">this</span><span class="s1">.clickStore)</span><span class="s0">;</span>
+<a name="l96"><span class="ln">96   </span></a>            <span class="s0">return;</span>
+<a name="l97"><span class="ln">97   </span></a>        <span class="s1">}</span>
+<a name="l98"><span class="ln">98   </span></a>
+<a name="l99"><span class="ln">99   </span></a>        <span class="s4">// If the hovered tile has changed</span>
+<a name="l100"><span class="ln">100  </span></a>        <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.hoverStore != </span><span class="s0">null </span><span class="s1">&amp;&amp; tile != </span><span class="s0">this</span><span class="s1">.hoverStore)</span>
+<a name="l101"><span class="ln">101  </span></a>            <span class="s0">this</span><span class="s1">.resetTiles(</span><span class="s0">this</span><span class="s1">.hoverStore)</span><span class="s0">;</span>
+<a name="l102"><span class="ln">102  </span></a>
+<a name="l103"><span class="ln">103  </span></a>        <span class="s4">// Set colour for available places to move</span>
+<a name="l104"><span class="ln">104  </span></a>        <span class="s0">if </span><span class="s1">(tile != </span><span class="s0">null </span><span class="s1">&amp;&amp; tile.getPiece() != </span><span class="s0">null</span><span class="s1">)</span>
+<a name="l105"><span class="ln">105  </span></a>            <span class="s0">this</span><span class="s1">.colourTiles(tile)</span><span class="s0">;</span>
+<a name="l106"><span class="ln">106  </span></a>
+<a name="l107"><span class="ln">107  </span></a>        <span class="s0">this</span><span class="s1">.hoverStore = tile</span><span class="s0">;</span>
+<a name="l108"><span class="ln">108  </span></a>    <span class="s1">}</span>
+<a name="l109"><span class="ln">109  </span></a>
+<a name="l110"><span class="ln">110  </span></a>    <span class="s2">/**</span>
+<a name="l111"><span class="ln">111  </span></a>     <span class="s2">* Used to reset the tiles to its original colour</span>
+<a name="l112"><span class="ln">112  </span></a>     <span class="s2">* after highlighting them with the cursor</span>
+<a name="l113"><span class="ln">113  </span></a>     <span class="s2">* </span><span class="s3">@param </span><span class="s2">tile The pieces possible moves to reset</span>
+<a name="l114"><span class="ln">114  </span></a>     <span class="s2">*/</span>
+<a name="l115"><span class="ln">115  </span></a>    <span class="s0">public void </span><span class="s1">resetTiles(ChessBoardTile tile) {</span>
+<a name="l116"><span class="ln">116  </span></a>        <span class="s1">ArrayList&lt;ChessBoardTile&gt; tiles = </span><span class="s0">this</span><span class="s1">.board.getPossibleMoves(tile)</span><span class="s0">;</span>
+<a name="l117"><span class="ln">117  </span></a>        <span class="s0">if </span><span class="s1">(tiles == </span><span class="s0">null</span><span class="s1">) </span><span class="s0">return;</span>
+<a name="l118"><span class="ln">118  </span></a>        <span class="s0">for </span><span class="s1">(ChessBoardTile temp : tiles) {</span>
+<a name="l119"><span class="ln">119  </span></a>            <span class="s0">if </span><span class="s1">(temp == </span><span class="s0">null</span><span class="s1">) </span><span class="s0">continue;</span>
+<a name="l120"><span class="ln">120  </span></a>            <span class="s1">temp.setTileColour(temp.tileColour.asColour())</span><span class="s0">;</span>
+<a name="l121"><span class="ln">121  </span></a>        <span class="s1">}</span>
+<a name="l122"><span class="ln">122  </span></a>    <span class="s1">}</span>
+<a name="l123"><span class="ln">123  </span></a>
+<a name="l124"><span class="ln">124  </span></a>    <span class="s2">/**</span>
+<a name="l125"><span class="ln">125  </span></a>     <span class="s2">* Used to colour the tiles based on if the piece can jump</span>
+<a name="l126"><span class="ln">126  </span></a>     <span class="s2">* </span><span class="s3">@param </span><span class="s2">tile The pieces possible moves to colour</span>
+<a name="l127"><span class="ln">127  </span></a>     <span class="s2">*/</span>
+<a name="l128"><span class="ln">128  </span></a>    <span class="s0">private void </span><span class="s1">colourTiles(ChessBoardTile tile) {</span>
+<a name="l129"><span class="ln">129  </span></a>        <span class="s1">ArrayList&lt;ChessBoardTile&gt; tiles = </span><span class="s0">this</span><span class="s1">.board.getPossibleMoves(tile)</span><span class="s0">;</span>
+<a name="l130"><span class="ln">130  </span></a>        <span class="s0">if </span><span class="s1">(tiles != </span><span class="s0">null</span><span class="s1">) {</span>
+<a name="l131"><span class="ln">131  </span></a>            <span class="s0">for </span><span class="s1">(ChessBoardTile temp : tiles) {</span>
+<a name="l132"><span class="ln">132  </span></a>                <span class="s0">if </span><span class="s1">(temp == </span><span class="s0">null</span><span class="s1">) </span><span class="s0">continue;</span>
+<a name="l133"><span class="ln">133  </span></a>                <span class="s0">if </span><span class="s1">(tile.getPiece().getOptions().canJump) temp.setTileColour(Color.yellow)</span><span class="s0">;</span>
+<a name="l134"><span class="ln">134  </span></a>                <span class="s0">else </span><span class="s1">temp.setTileColour(Color.green)</span><span class="s0">;</span>
+<a name="l135"><span class="ln">135  </span></a>            <span class="s1">}</span>
+<a name="l136"><span class="ln">136  </span></a>        <span class="s1">}</span>
+<a name="l137"><span class="ln">137  </span></a>    <span class="s1">}</span>
+<a name="l138"><span class="ln">138  </span></a>
+<a name="l139"><span class="ln">139  </span></a>    <span class="s1">@Override</span>
+<a name="l140"><span class="ln">140  </span></a>    <span class="s0">public void </span><span class="s1">onClick(ChessBoardTile tile) {</span>
+<a name="l141"><span class="ln">141  </span></a>        <span class="s1">Controller controller = </span><span class="s0">this</span><span class="s1">.getWhoseTurn()</span><span class="s0">;</span>
+<a name="l142"><span class="ln">142  </span></a>        <span class="s0">if </span><span class="s1">(controller.canClick()) </span><span class="s0">this</span><span class="s1">.playerHasClicked(tile)</span><span class="s0">;</span>
+<a name="l143"><span class="ln">143  </span></a>    <span class="s1">}</span>
+<a name="l144"><span class="ln">144  </span></a>
+<a name="l145"><span class="ln">145  </span></a>    <span class="s2">/**</span>
+<a name="l146"><span class="ln">146  </span></a>     <span class="s2">* Called when a player has clicked a tile</span>
+<a name="l147"><span class="ln">147  </span></a>     <span class="s2">* </span><span class="s3">@param </span><span class="s2">tile Tile that has been clicked</span>
+<a name="l148"><span class="ln">148  </span></a>     <span class="s2">*/</span>
+<a name="l149"><span class="ln">149  </span></a>    <span class="s0">private void </span><span class="s1">playerHasClicked(ChessBoardTile tile) {</span>
+<a name="l150"><span class="ln">150  </span></a>        <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.board.getPossibleMoves(</span><span class="s0">this</span><span class="s1">.clickStore).contains(tile)) {</span>
+<a name="l151"><span class="ln">151  </span></a>            <span class="s0">this</span><span class="s1">.board.makeMove(</span>
+<a name="l152"><span class="ln">152  </span></a>                    <span class="s0">new </span><span class="s1">ChessMove(</span><span class="s0">this</span><span class="s1">.clickStore</span><span class="s0">, </span><span class="s1">tile</span><span class="s0">, this</span><span class="s1">.clickStore.getPiece())</span>
+<a name="l153"><span class="ln">153  </span></a>            <span class="s1">)</span><span class="s0">;</span>
+<a name="l154"><span class="ln">154  </span></a>
+<a name="l155"><span class="ln">155  </span></a>            <span class="s0">this</span><span class="s1">.switchTurn()</span><span class="s0">;</span>
+<a name="l156"><span class="ln">156  </span></a>        <span class="s1">}</span>
+<a name="l157"><span class="ln">157  </span></a>        <span class="s0">else if </span><span class="s1">(!(</span><span class="s0">this</span><span class="s1">.board.isPieceAt(tile.getTilePosition()) &amp;&amp;</span>
+<a name="l158"><span class="ln">158  </span></a>                <span class="s1">tile.getPiece().getColour() != </span><span class="s0">this</span><span class="s1">.turn)) {</span>
+<a name="l159"><span class="ln">159  </span></a>            <span class="s0">this</span><span class="s1">.clickStore = tile</span><span class="s0">;</span>
+<a name="l160"><span class="ln">160  </span></a>        <span class="s1">}</span>
+<a name="l161"><span class="ln">161  </span></a>    <span class="s1">}</span>
+<a name="l162"><span class="ln">162  </span></a>
+<a name="l163"><span class="ln">163  </span></a>    <span class="s2">/**</span>
+<a name="l164"><span class="ln">164  </span></a>     <span class="s2">* Used to get the player whose turn it is</span>
+<a name="l165"><span class="ln">165  </span></a>     <span class="s2">*/</span>
+<a name="l166"><span class="ln">166  </span></a>    <span class="s0">public </span><span class="s1">Controller getWhoseTurn() {</span>
+<a name="l167"><span class="ln">167  </span></a>        <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.turn == </span><span class="s0">this</span><span class="s1">.player1.getColour()) </span><span class="s0">return this</span><span class="s1">.player1</span><span class="s0">;</span>
+<a name="l168"><span class="ln">168  </span></a>        <span class="s0">return this</span><span class="s1">.player2</span><span class="s0">;</span>
+<a name="l169"><span class="ln">169  </span></a>    <span class="s1">}</span>
+<a name="l170"><span class="ln">170  </span></a>
+<a name="l171"><span class="ln">171  </span></a>    <span class="s2">/**</span>
+<a name="l172"><span class="ln">172  </span></a>     <span class="s2">* Used to switch to the next players turn</span>
+<a name="l173"><span class="ln">173  </span></a>     <span class="s2">*/</span>
+<a name="l174"><span class="ln">174  </span></a>    <span class="s0">private void </span><span class="s1">switchTurn() {</span>
+<a name="l175"><span class="ln">175  </span></a>        <span class="s4">// Get piece moved and fire controller event</span>
+<a name="l176"><span class="ln">176  </span></a>        <span class="s0">this</span><span class="s1">.getWhoseTurn().onTurnEnd(</span><span class="s0">this</span><span class="s1">.board.getLog().getLast())</span><span class="s0">;</span>
+<a name="l177"><span class="ln">177  </span></a>
+<a name="l178"><span class="ln">178  </span></a>        <span class="s4">// Check if the game has ended</span>
+<a name="l179"><span class="ln">179  </span></a>        <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.checkIfGameHasEnded()) {</span>
+<a name="l180"><span class="ln">180  </span></a>            <span class="s1">Application.setPage(</span><span class="s0">new </span><span class="s1">GameEnd(ChessColour.opposite(</span><span class="s0">this</span><span class="s1">.turn)</span><span class="s0">, this</span><span class="s1">.board))</span><span class="s0">;</span>
+<a name="l181"><span class="ln">181  </span></a>            <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.getWhoseTurn() </span><span class="s0">instanceof </span><span class="s1">MultiplayerServer) {</span>
+<a name="l182"><span class="ln">182  </span></a>                <span class="s1">MultiplayerManager.get().broadcastEvent(</span><span class="s0">new </span><span class="s1">GameRoomDeleteEvent())</span><span class="s0">;</span>
+<a name="l183"><span class="ln">183  </span></a>            <span class="s1">}</span>
+<a name="l184"><span class="ln">184  </span></a>            <span class="s0">return;</span>
+<a name="l185"><span class="ln">185  </span></a>        <span class="s1">}</span>
+<a name="l186"><span class="ln">186  </span></a>
+<a name="l187"><span class="ln">187  </span></a>        <span class="s4">// Flip the board</span>
+<a name="l188"><span class="ln">188  </span></a>        <span class="s0">this</span><span class="s1">.board.flip()</span><span class="s0">;</span>
+<a name="l189"><span class="ln">189  </span></a>
+<a name="l190"><span class="ln">190  </span></a>        <span class="s4">// Render the new board</span>
+<a name="l191"><span class="ln">191  </span></a>        <span class="s1">Application.render()</span><span class="s0">;</span>
+<a name="l192"><span class="ln">192  </span></a>
+<a name="l193"><span class="ln">193  </span></a>        <span class="s4">// Reset what the player has clicked</span>
+<a name="l194"><span class="ln">194  </span></a>        <span class="s0">if </span><span class="s1">(</span><span class="s0">this</span><span class="s1">.clickStore != </span><span class="s0">null</span><span class="s1">) {</span>
+<a name="l195"><span class="ln">195  </span></a>            <span class="s0">this</span><span class="s1">.resetTiles(</span><span class="s0">this</span><span class="s1">.clickStore)</span><span class="s0">;</span>
+<a name="l196"><span class="ln">196  </span></a>            <span class="s0">this</span><span class="s1">.clickStore = </span><span class="s0">null;</span>
+<a name="l197"><span class="ln">197  </span></a>        <span class="s1">}</span>
+<a name="l198"><span class="ln">198  </span></a>
+<a name="l199"><span class="ln">199  </span></a>        <span class="s4">// Change whose turn it is</span>
+<a name="l200"><span class="ln">200  </span></a>        <span class="s0">this</span><span class="s1">.turn = ChessColour.opposite(</span><span class="s0">this</span><span class="s1">.turn)</span><span class="s0">;</span>
+<a name="l201"><span class="ln">201  </span></a>
+<a name="l202"><span class="ln">202  </span></a>        <span class="s4">// New turn</span>
+<a name="l203"><span class="ln">203  </span></a>        <span class="s0">this</span><span class="s1">.newTurn = </span><span class="s0">true;</span>
+<a name="l204"><span class="ln">204  </span></a>    <span class="s1">}</span>
+<a name="l205"><span class="ln">205  </span></a>
+<a name="l206"><span class="ln">206  </span></a>
+<a name="l207"><span class="ln">207  </span></a>
+<a name="l208"><span class="ln">208  </span></a>    <span class="s0">private boolean </span><span class="s1">checkIfGameHasEnded() {</span>
+<a name="l209"><span class="ln">209  </span></a>        <span class="s0">return this</span><span class="s1">.board.includesCanEndGame(</span><span class="s0">this</span><span class="s1">.board.getPossibleMoveForColour(ChessColour.opposite(</span><span class="s0">this</span><span class="s1">.turn)))</span><span class="s0">;</span>
+<a name="l210"><span class="ln">210  </span></a>    <span class="s1">}</span>
+<a name="l211"><span class="ln">211  </span></a><span class="s1">}</span>
+<a name="l212"><span class="ln">212  </span></a></pre>
+</body>
+</html>

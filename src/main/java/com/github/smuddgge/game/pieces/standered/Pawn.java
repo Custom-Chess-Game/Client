@@ -3,6 +3,7 @@ package com.github.smuddgge.game.pieces.standered;
 import com.github.smuddgge.game.ChessBoard;
 import com.github.smuddgge.game.ChessBoardTile;
 import com.github.smuddgge.game.ChessColour;
+import com.github.smuddgge.game.ChessMove;
 import com.github.smuddgge.game.pieces.Piece;
 import com.github.smuddgge.positions.TilePosition;
 
@@ -58,5 +59,15 @@ public class Pawn extends Piece {
         tiles.add(board.getTile(position.addVector(-1, 1, this.getColour())));
 
         return tiles;
+    }
+
+    /**
+     * Used to test if a chess move is en passant
+     * @param chessMove A chess move to test for en passant
+     * @return True if the move is en passant
+     */
+    public static boolean isEnPassant(ChessMove chessMove) {
+        if (!(chessMove.getPiece() instanceof Pawn)) return false;
+        return chessMove.getDistanceInY() == 2;
     }
 }

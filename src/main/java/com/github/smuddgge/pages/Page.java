@@ -1,6 +1,13 @@
 package com.github.smuddgge.pages;
 
+import com.github.smuddgge.Client;
+import com.github.smuddgge.engine.Application;
 import com.github.smuddgge.items.Item;
+import com.github.smuddgge.items.button.Button;
+import com.github.smuddgge.items.button.ButtonExecute;
+import com.github.smuddgge.items.button.ButtonText;
+import com.github.smuddgge.positions.ModularPosition;
+import com.github.smuddgge.positions.Position;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -18,7 +25,13 @@ public abstract class Page {
     /**
      * Used to create a new instance of a page
      */
-    public Page() {}
+    public Page() {
+        this.addItem(new Button(
+                new ModularPosition(130, 30).setPos1(new Position(10, 10)).setToFirstPosition(),
+                new ButtonText("Main Menu"),
+                new ButtonExecute(() -> Application.setPage(Client.getMainMenu()))
+        ));
+    }
 
     /**
      * Used to add an item to the page

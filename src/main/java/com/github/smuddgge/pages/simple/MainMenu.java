@@ -38,8 +38,14 @@ public class MainMenu extends Page {
             this.itemCollection.addItem(new Button(
                     new ModularPosition(400, 100).setCentered(true),
                     new ButtonText("Online"),
-                    new ButtonExecute(() -> Application.setPage(new EnterName()))
+                    new ButtonExecute(() -> Application.setPage(new EnterName("Enter name")))
             ));
+
+            this.itemCollection.addItem(new Button(
+                    new ModularPosition(400, 100).setCentered(true),
+                    new ButtonText("Statistics")
+            ));
+
         } else {
             this.itemCollection.addItem(new Button(
                     new ModularPosition(400, 100).setCentered(true),
@@ -50,11 +56,6 @@ public class MainMenu extends Page {
                     }))
             );
         }
-
-        this.itemCollection.addItem(new Button(
-                new ModularPosition(400, 100).setCentered(true),
-                new ButtonText("Statistics")
-        ));
 
         this.itemCollection.toPage(this);
     }

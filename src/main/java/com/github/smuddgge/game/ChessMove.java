@@ -81,6 +81,14 @@ public class ChessMove {
     }
 
     /**
+     * Used to get the distance traveled in the Y direction
+     * @return The distance traveled in the Y direction
+     */
+    public int getDistanceInY() {
+        return Math.abs(this.from.getTilePosition().getY() - this.to.getTilePosition().getY());
+    }
+
+    /**
      * Used to debug and show the info contained in the chess move
      */
     public void asDebug() {

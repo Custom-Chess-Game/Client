@@ -1,7 +1,12 @@
 package com.github.smuddgge.pages.game;
 
 import com.github.smuddgge.Client;
+import com.github.smuddgge.database.data.GameRecord;
 import com.github.smuddgge.engine.Application;
+import com.github.smuddgge.engine.MultiplayerManager;
+import com.github.smuddgge.events.DatabaseGameUpdateEvent;
+import com.github.smuddgge.events.GameRoomDeleteEvent;
+import com.github.smuddgge.events.PlayerMoveEvent;
 import com.github.smuddgge.game.ChessBoard;
 import com.github.smuddgge.game.ChessColour;
 import com.github.smuddgge.items.ItemCollection;
@@ -11,6 +16,10 @@ import com.github.smuddgge.items.button.ButtonText;
 import com.github.smuddgge.items.text.Text;
 import com.github.smuddgge.pages.Page;
 import com.github.smuddgge.positions.ModularPosition;
+import com.github.smuddgge.requests.GameRoomRequest;
+
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Represents the menu when the game ends
@@ -54,6 +63,10 @@ public class GameEnd extends Page {
         ));
 
         this.itemCollection.toPage(this);
+
+        if (MultiplayerManager.isConnected()) {
+            MultiplayerManager.updateGame(colour, board);
+        }
     }
 
     @Override

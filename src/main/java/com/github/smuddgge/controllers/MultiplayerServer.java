@@ -6,6 +6,8 @@ import com.github.smuddgge.engine.MultiplayerManager;
 import com.github.smuddgge.game.ChessBoard;
 import com.github.smuddgge.game.ChessColour;
 import com.github.smuddgge.game.ChessMove;
+import com.github.smuddgge.pages.game.GameEnd;
+import com.github.smuddgge.requests.GameRoomRequest;
 import com.github.smuddgge.requests.PlayerMoveRequest;
 
 public class MultiplayerServer extends Controller {
@@ -31,13 +33,13 @@ public class MultiplayerServer extends Controller {
         while(true) {
             if (Application.getState() == ApplicationState.Stopped) return false;
 
-            String move = (String) MultiplayerManager.get().request(new PlayerMoveRequest());
-
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            String move = (String) MultiplayerManager.get().request(new PlayerMoveRequest());
 
             if (move == null) continue;
 

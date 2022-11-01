@@ -1,7 +1,11 @@
 package com.github.smuddgge.game;
 
 import com.github.smuddgge.controllers.Controller;
+import com.github.smuddgge.controllers.MultiplayerPlayer;
+import com.github.smuddgge.controllers.MultiplayerServer;
 import com.github.smuddgge.engine.Application;
+import com.github.smuddgge.engine.MultiplayerManager;
+import com.github.smuddgge.events.GameRoomDeleteEvent;
 import com.github.smuddgge.game.layout.BoardLayout;
 import com.github.smuddgge.items.chessboard.ChessBoardItem;
 import com.github.smuddgge.pages.game.GameEnd;
@@ -174,6 +178,9 @@ public class ChessGame extends ChessBoardItem {
         // Check if the game has ended
         if (this.checkIfGameHasEnded()) {
             Application.setPage(new GameEnd(ChessColour.opposite(this.turn), this.board));
+            if (this.getWhoseTurn() instanceof MultiplayerServer) {
+                MultiplayerManager.get().broadcastEvent(new GameRoomDeleteEvent());
+            }
             return;
         }
 

@@ -51,7 +51,7 @@ public class Room extends Page {
             Map<String, Object> room = (Map<String, Object>) MultiplayerManager.get().request(new GameRoomRequest());
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

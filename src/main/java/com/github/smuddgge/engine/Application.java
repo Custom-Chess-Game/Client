@@ -37,9 +37,6 @@ public class Application {
      * Create a new instance of the application
      */
     public Application(String caption) {
-        // Attempt to register client with the server
-        MultiplayerManager.registerClient();
-
         // Create the application window
         frame = new JFrame(caption);
 

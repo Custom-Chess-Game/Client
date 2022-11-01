@@ -2,6 +2,7 @@ package com.github.smuddgge.game;
 
 import com.github.smuddgge.engine.Application;
 import com.github.smuddgge.game.layout.BoardLayout;
+import com.github.smuddgge.game.pieces.standered.Pawn;
 import com.github.smuddgge.positions.Position;
 import com.github.smuddgge.positions.Region2D;
 import com.github.smuddgge.positions.TilePosition;
@@ -196,19 +197,19 @@ public class ChessBoard {
             if (temp.getPiece() != null) continue;
 
             // Is there a piece blocking the square
-            if (this.getPiecesBetween(tile, temp) > 0) {
-                if (!tile.getPiece().getOptions().canJump) continue;
-            }
+            if (this.getPiecesBetween(tile, temp) > 0 && !tile.getPiece().getOptions().canJump) continue;
+
             tiles.add(temp);
         }
 
         // Add tiles that the piece can take
         for (ChessBoardTile temp : tile.getPiece().getTakePositions(this, tile)) {
             if (temp == null) continue;
-            if (temp.getPiece() == null) continue;
+            if (tile.getPiece() == null) return new ArrayList<>();
 
             // If the piece is the other players colour
-            if (temp.getPiece().getColour() == tile.getPiece().getColour()) continue;
+            if (temp.getPiece() != null && temp.getPiece().getColour() == tile.getPiece().getColour())
+                continue;
 
             // If the piece can jump
             if (tile.getPiece().getOptions().canJump) {
@@ -218,6 +219,17 @@ public class ChessBoard {
 
             // If the piece is blocked
             if (this.getPiecesBetween(tile, temp) > 1) continue;
+
+            // If the last move was en passant in this square
+            // if (this.getLog().getLast() != null && Pawn.isEnPassant(this.getLog().getLast())) {
+                // TilePosition tilePosition = temp.getTilePosition().addVector(0, 1, tile.getPiece().getColour());
+                // if (!(this.getTile(tilePosition).getPiece() instanceof Pawn)) continue;
+                    
+                // tiles.add(temp);
+                // continue;
+            // }
+
+            if (temp.getPiece() == null) continue;
 
             tiles.add(temp);
         }

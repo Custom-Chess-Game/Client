@@ -58,6 +58,7 @@ public class ChessMoveLog {
      * @return The chess move
      */
     public ChessMove getLast() {
+        if (this.log.size() - 1 == -1) return null;
         return this.log.get(this.log.size() - 1);
     }
 }

@@ -37,7 +37,7 @@ public class CustomMainMenu extends Page {
             this.itemCollection.addItem(new Button(
                     new ModularPosition(400, 100).setCentered(true),
                     new ButtonText("Online"),
-                    new ButtonExecute(() -> Application.setPage(new EnterName()))
+                    new ButtonExecute(() -> Application.setPage(new EnterName("Enter name")))
             ));
         } else {
             this.itemCollection.addItem(new Button(
