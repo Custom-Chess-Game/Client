@@ -44,7 +44,7 @@ public class EnterName extends Page {
                         return;
                     }
                     MultiplayerManager.setClientName(input.getInput());
-                    Application.setPage(new Offline());
+                    Application.setPage(new Online());
                 })
         ));
 

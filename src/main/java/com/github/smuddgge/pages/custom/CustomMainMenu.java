@@ -45,7 +45,7 @@ public class CustomMainMenu extends Page {
                     new ButtonText("Refresh connection"),
                     new ButtonExecute(() -> {
                         MultiplayerManager.registerClient();
-                        Application.setPage(new com.github.smuddgge.pages.simple.MainMenu());
+                        Application.setPage(new CustomMainMenu());
                     }))
             );
         }

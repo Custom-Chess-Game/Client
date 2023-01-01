@@ -1,7 +1,6 @@
 package com.github.smuddgge.game;
 
 import com.github.smuddgge.controllers.Controller;
-import com.github.smuddgge.controllers.MultiplayerPlayer;
 import com.github.smuddgge.controllers.MultiplayerServer;
 import com.github.smuddgge.engine.Application;
 import com.github.smuddgge.engine.MultiplayerManager;

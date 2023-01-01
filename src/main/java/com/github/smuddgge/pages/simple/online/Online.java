@@ -13,7 +13,7 @@ import com.github.smuddgge.pages.simple.online.joinroom.JoinRoom;
 import com.github.smuddgge.positions.ModularPosition;
 import com.github.smuddgge.utility.PlayerStatus;
 
-public class Offline extends Page {
+public class Online extends Page {
 
     /**
      * The menu item collection
@@ -21,7 +21,7 @@ public class Offline extends Page {
      */
     private final ItemCollection itemCollection;
 
-    public Offline() {
+    public Online() {
         this.itemCollection = new ItemCollection().setColumns(1);
 
         this.itemCollection.addItem(new Button(
